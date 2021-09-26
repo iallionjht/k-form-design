@@ -1,5 +1,9 @@
 const debug = process.env.NODE_ENV !== 'production'
 module.exports = {
+  devServer: { // 自定义服务配置
+    open: false, // 自动打开浏览器
+    port: 3000
+  },
   pages: {
     index: {
       // 页面入口
