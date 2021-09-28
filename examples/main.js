@@ -14,6 +14,7 @@ import router from "./router/";
 
 import KFormDesign from "../packages/index";
 import Cmp from "./components/CustomComponent/index.vue";
+import { MyChart1 } from "./components/CustomComponent/chart/component.js"
 // const Cmp = {
 //   name: "cmp",
 //   render: function(h) {
@@ -45,7 +46,8 @@ KFormDesign.setFormDesignConfig({
           message: "必填项"
         }
       ]
-    }
+    },
+    MyChart1
   ],
   uploadFile: "",
   uploadImage: "",
