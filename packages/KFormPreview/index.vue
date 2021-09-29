@@ -79,7 +79,7 @@ export default {
 <style lang="less" scoped>
 .ant-modal-root::v-deep .ant-modal-body::-webkit-scrollbar{
   width: 6px;
-    height: 6px;
+  height: 6px;
 }
 .ant-modal-root::v-deep .ant-modal-body::-webkit-scrollbar-thumb {
     border-radius: 5px;
@@ -96,5 +96,8 @@ export default {
 }
 .ant-modal-root::v-deep .ant-modal-content {
   height: 100%;
+  .ant-modal-body {
+    padding: 0px;
+  }
 }
 </style>

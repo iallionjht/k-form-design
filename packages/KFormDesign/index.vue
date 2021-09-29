@@ -70,7 +70,7 @@
               />
             </a-collapse-panel>
             <!-- 自定义控件 end -->
-
+            
             <!-- 布局控件 start -->
             <a-collapse-panel
               v-if="layoutArray.length > 0"
@@ -357,7 +357,7 @@ export default {
       const key = list[index].type + "_" + new Date().getTime();
       this.$set(list, index, {
         ...list[index],
-        key,
+        key: key,
         model: key
       });
       if (this.noModel.includes(list[index].type)) {
@@ -368,6 +368,7 @@ export default {
     handleListPush(item) {
       // 双击控件按钮push到list
       // 生成key值
+      console.log("handleListPush ",item) 
       if (!this.selectItem.key) {
         // 在没有选择表单时，将数据push到this.data.list
         const key = item.type + "_" + new Date().getTime();

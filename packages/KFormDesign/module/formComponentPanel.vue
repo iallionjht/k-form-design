@@ -136,6 +136,7 @@ export default {
   },
   methods: {
     deepClone(evt) {
+      console.log("deepClone ",evt)
       const newIndex = evt.newIndex;
       // json深拷贝一次
       const listString = JSON.stringify(this.data.list);
@@ -146,6 +147,7 @@ export default {
       this.$emit("handleSetSelectItem", this.data.list[newIndex]);
     },
     handleColAdd(evt, columns, isCopy = false) {
+      console.log("handleColAdd ",evt)
       // 重置或者生成key值
       const newIndex = evt.newIndex;
       const key = columns[newIndex].type + "_" + new Date().getTime();
@@ -208,6 +210,7 @@ export default {
       this.$emit("handleSetSelectItem", record);
     },
     handleCopy(isCopy = true, data) {
+      console.log("handleCopy ",data)
       const traverse = array => {
         array.forEach((element, index) => {
           if (element.key === this.selectItem.key) {

@@ -269,9 +269,10 @@
 
           .list-main {
             min-height   : 100%;
-            padding      : 5px;
+            padding      : 0px;
             position     : relative;
-            background   : #fafafa;
+            // background   : #fafafa;
+            background   : rgba(0,0,0,0);
             // border    : 1px #ccc dashed;
 
             .moving {
@@ -298,10 +299,10 @@
             .drag-move-box {
               position  : relative;
               box-sizing: border-box;
-              padding   : 8px;
+              padding   : 0px;
               overflow  : hidden;
               transition: all .3s;
-              min-height: 36px;
+              min-height: 20px;
 
               &:hover {
                 background: @primary-hover-bg-color;
@@ -477,7 +478,7 @@
             .table-box {
               position  : relative;
               box-sizing: border-box;
-              padding   : 5px;
+              padding   : 0px;
               background: @layout-background-color;
               width     : 100%;
               transition: all .3s;
@@ -793,7 +794,7 @@
     }
 
     .ant-table-tbody>tr>td {
-      padding: 8px;
+      padding: 0px;
     }
 
     .ant-form-inline .ant-form-item-with-help {
