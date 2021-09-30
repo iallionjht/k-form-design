@@ -553,6 +553,17 @@
         >
           <a-input v-model="options.addonAfter" placeholder="请输入" />
         </a-form-item>
+
+        <a-form-item
+          label="控件样式"
+          v-if="typeof options.ctlStyle !== 'undefined'"
+        >
+          <a-textarea
+            v-model="options.ctlStyle"
+            :autoSize="{ minRows: 4, maxRows: 8 }"
+          />
+        </a-form-item>
+
       </a-form>
     </div>
   </div>

@@ -70,7 +70,7 @@
               />
             </a-collapse-panel>
             <!-- 自定义控件 end -->
-            
+
             <!-- 布局控件 start -->
             <a-collapse-panel
               v-if="layoutArray.length > 0"
@@ -255,13 +255,14 @@ export default {
         "card",
         "tabs",
         "grid",
-        "table"
+        "table",
+        "tableList"
       ]
     },
     hideModel: {
       // 隐藏数据字段
       type: Boolean,
-      default: false
+      default: false 
     }
   },
   data() {

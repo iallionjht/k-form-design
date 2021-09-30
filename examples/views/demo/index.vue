@@ -125,7 +125,8 @@ export default {
                   clearable: false,
                   maxLength: null,
                   hidden: false,
-                  disabled: false
+                  disabled: false,
+                  ctlStyle: ""
                 },
                 model: "input_1619948973892",
                 key: "input_1619948973892",

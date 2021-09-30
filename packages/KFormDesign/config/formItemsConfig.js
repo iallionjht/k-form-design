@@ -19,7 +19,8 @@ export const basicsList = [
       addonBefore: "",
       addonAfter: "",
       hidden: false, // 是否隐藏，false显示，true隐藏
-      disabled: false // 是否禁用，false不禁用，true禁用
+      disabled: false, // 是否禁用，false不禁用，true禁用
+      ctlStyle: ""
     },
     model: "", // 数据字段
     key: "",
@@ -436,6 +437,24 @@ export const basicsList = [
         message: "必填项"
       }
     ]
+  },
+
+  {
+    type: "tableList",
+    label: "表格列表",
+    icon: "icon-biaoge",
+    list: [],
+    options: {
+      scrollY: 0,
+      disabled: false,
+      hidden: false, // 是否隐藏，false显示，true隐藏
+      showLabel: false,
+      hideSequence: true,
+      width: "100%"
+    },
+    model: "",
+    key: "",
+    help: ""
   },
   {
     type: "batch",

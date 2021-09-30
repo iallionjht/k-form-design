@@ -243,6 +243,13 @@ export default {
               return false;
             }
             traverse(element.list);
+          } else if (element.type === "tableList") {
+            // 表格列表内复制
+            if (!isCopy && !this.insertAllowedType.includes(data.type)) {
+              // 插入不允许的字段时，直接return false
+              return false;
+            }
+            traverse(element.list);
           }
           if (element.type === "table") {
             // 表格布局
@@ -270,6 +277,10 @@ export default {
             // 卡片布局
             element.list = traverse(element.list);
           }
+          if (element.type === "tableList") {
+            // 表格列表
+            element.list = traverse(element.list);
+          }
           if (element.type === "table") {
             // 表格布局
             element.trs.forEach(item => {
@@ -278,6 +289,7 @@ export default {
               });
             });
           }
+
           if (element.key !== this.selectItem.key) {
             return true;
           } else {

@@ -6,6 +6,86 @@
       )
     }"
   >
+    <!-- 表格列表模块开始 -->
+    <template v-if="record.type === 'tableList'">
+      <div
+        class="batch-box"
+        :class="{ active: record.key === selectItem.key }"
+        @click.stop="handleSelectItem(record)"
+      >
+        <a-form-item
+          :label="!record.options.showLabel ? '' : record.label"
+          :label-col="
+            config.layout === 'horizontal' && record.options.showLabel
+              ? config.labelLayout === 'flex'
+                ? { style: `width:${config.labelWidth}px` }
+                : config.labelCol
+              : {}
+          "
+          :wrapper-col="
+            config.layout === 'horizontal' && record.options.showLabel
+              ? config.labelLayout === 'flex'
+                ? { style: 'width:auto;flex:1' }
+                : config.wrapperCol
+              : {}
+          "
+          :style="
+            config.layout === 'horizontal' &&
+            config.labelLayout === 'flex' &&
+            record.options.showLabel
+              ? { display: 'flex' }
+              : {}
+          "
+        >
+          <draggable
+            tag="div"
+            class="draggable-box"
+            v-bind="{
+              group: insertAllowed ? 'form-draggable' : '',
+              ghostClass: 'moving',
+              animation: 180,
+              handle: '.drag-move'
+            }"
+            v-model="record.list"
+            @start="$emit('dragStart', $event, record.list)"
+            @add="$emit('handleColAdd', $event, record.list)"
+          >
+            <transition-group tag="div" name="list" class="list-main">
+              <formNode
+                v-for="item in record.list"
+                :key="item.key"
+                class="drag-move"
+                :selectItem.sync="selectItem"
+                :record="item"
+                :hideModel="hideModel"
+                :config="config"
+                @handleSelectItem="handleSelectItem"
+                @handleColAdd="handleColAdd"
+                @handleCopy="$emit('handleCopy')"
+                @handleShowRightMenu="handleShowRightMenu"
+                @handleDelete="$emit('handleDelete')"
+              />
+            </transition-group>
+          </draggable>
+        </a-form-item>
+        <div
+          class="copy"
+          :class="record.key === selectItem.key ? 'active' : 'unactivated'"
+          @click.stop="$emit('handleCopy')"
+        >
+          <a-icon type="copy" />
+        </div>
+        <div
+          class="delete"
+          :class="record.key === selectItem.key ? 'active' : 'unactivated'"
+          @click.stop="$emit('handleDelete')"
+        >
+          <a-icon type="delete" />
+        </div>
+      </div>
+    </template>
+    <!-- 表格列表模块 end -->
+
     <!-- 动态表格设计模块 start -->
     <template v-if="record.type === 'batch'">
       <div

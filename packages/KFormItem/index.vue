@@ -59,7 +59,7 @@
     </span>
     <!-- 多行文本 -->
     <a-textarea
-      :style="`width:${record.options.width}`"
+      :style="`width:${record.options.width}` + `${record.options.ctlStyle}`"
       v-if="record.type === 'textarea'"
       :autoSize="{
         minRows: record.options.minRows,
@@ -82,6 +82,7 @@
     <!-- 单选框 -->
     <a-radio-group
       v-else-if="record.type === 'radio'"
+      :style="`${record.options.ctlStyle}`"
       :options="
         !record.options.dynamic
           ? record.options.options
@@ -103,6 +104,7 @@
     <!-- 多选框 -->
     <a-checkbox-group
       v-else-if="record.type === 'checkbox'"
+      :style="`${record.options.ctlStyle}`"
       :options="
         !record.options.dynamic
           ? record.options.options
@@ -124,6 +126,7 @@
     <!-- 开关 -->
     <a-switch
       v-else-if="record.type === 'switch'"
+      :style="`${record.options.ctlStyle}`"
       :disabled="disabled || record.options.disabled"
       @change="handleChange($event, record.model)"
       v-decorator="[
@@ -138,11 +141,12 @@
     <!-- 滑块 -->
     <div
       v-else-if="record.type === 'slider'"
-      :style="`width:${record.options.width}`"
+      :style="`width:${record.options.width}` + `${record.options.ctlStyle}`"
       class="slider-box"
     >
       <div class="slider">
         <a-slider
+          :style="`${record.options.ctlStyle}`"
           :disabled="disabled || record.options.disabled"
           :min="record.options.min"
           :max="record.options.max"
@@ -159,7 +163,7 @@
       </div>
       <div class="number" v-if="record.options.showInput">
         <a-input-number
-          style="width: 100%"
+          :style="'width: 100%' + `${record.options.ctlStyle}`"
           :disabled="disabled || record.options.disabled"
           :min="record.options.min"
           :max="record.options.max"
@@ -189,7 +193,7 @@
     </div>
     <component
       v-else
-      :style="`width:${record.options.width}`"
+      :style="`width:${record.options.width};` + `${record.options.ctlStyle}`"
       v-bind="componentOption"
       :min="
         record.options.min || record.options.min === 0
@@ -278,6 +282,51 @@
   >
     <component
       :ref="['batch', 'selectInputList'].includes(record.type) && 'KBatch'"
+      :style="`width:${record.options.width}`"
+      v-bind="componentOption"
+      :record="record"
+      :config="config"
+      :parentDisabled="disabled || record.options.disabled"
+      :disabled="disabled || record.options.disabled"
+      :dynamicData="dynamicData"
+      @change="handleChange($event, record.model)"
+      v-decorator="[
+        record.model, // input 的 name
+        {
+          initialValue: record.options.defaultValue, // 默认值
+          rules: record.rules // 验证规则
+        }
+      ]"
+      :is="componentItem"
+    ></component>
+  </a-form-item> 
+  <a-form-item
+    v-else-if="['tableList'].includes(record.type)"
+    :label="!record.options.showLabel ? '' : record.label"
+    :label-col="
+      formConfig.layout === 'horizontal' && record.options.showLabel
+        ? formConfig.labelLayout === 'flex'
+          ? { style: `width:${formConfig.labelWidth}px` }
+          : formConfig.labelCol
+        : {}
+    "
+    :wrapper-col="
+      formConfig.layout === 'horizontal' && record.options.showLabel
+        ? formConfig.labelLayout === 'flex'
+          ? { style: 'width:auto;flex:1' }
+          : formConfig.wrapperCol
+        : {}
+    "
+    :style="
+      formConfig.layout === 'horizontal' &&
+      formConfig.labelLayout === 'flex' &&
+      record.options.showLabel
+        ? { display: 'flex' }
+        : {}
+    "
+  >
+    <component
+      :ref="['tableList'].includes(record.type) && 'KTableList'"
       :style="`width:${record.options.width}`"
       v-bind="componentOption"
       :record="record"

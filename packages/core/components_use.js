@@ -43,6 +43,7 @@ import {
 import vcolorpicker from "vcolorpicker";
 
 import KBatch from "../KBatch";
+import KTableList from "../KTableList";
 import KSelectInputList from "../KSelectInputList";
 import KEditor from "../KEditor";
 import UploadFile from "../UploadFile";
@@ -67,7 +68,8 @@ export default {
   cascader: Cascader,
   batch: KBatch,
   selectInputList: KSelectInputList,
-  editor: KEditor
+  editor: KEditor,
+  tableList: KTableList
 };
 
 Vue.use(ConfigProvider);
