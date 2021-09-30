@@ -26,13 +26,7 @@
         'treeSelect'
       ].includes(record.type)
     "
-    :label-col="
-      formConfig.layout === 'horizontal'
-        ? formConfig.labelLayout === 'flex'
-          ? { style: `width:${formConfig.labelWidth}px` }
-          : formConfig.labelCol
-        : {}
-    "
+    :label-col="labelCol"
     :wrapper-col="
       formConfig.layout === 'horizontal'
         ? formConfig.labelLayout === 'flex'
@@ -462,6 +456,16 @@ export default {
     customComponent
   },
   computed: {
+    labelCol() {
+      if (this.record.options.labelWidth) {
+        return {style: `width:${this.record.options.labelWidth}px`}
+      }
+      return this.formConfig.layout === 'horizontal'
+        ? this.formConfig.labelLayout === 'flex'
+          ? { style: `width:${this.formConfig.labelWidth}px` }
+          : this.formConfig.labelCol
+        : {}
+    },
     customList() {
       if (window.$customComponentList) {
         return window.$customComponentList.map(item => item.type);

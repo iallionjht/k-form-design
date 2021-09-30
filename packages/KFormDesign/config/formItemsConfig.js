@@ -20,7 +20,8 @@ export const basicsList = [
       addonAfter: "",
       hidden: false, // 是否隐藏，false显示，true隐藏
       disabled: false, // 是否禁用，false不禁用，true禁用
-      ctlStyle: ""
+      ctlStyle: "",
+      // labelWidth: 100,
     },
     model: "", // 数据字段
     key: "",
