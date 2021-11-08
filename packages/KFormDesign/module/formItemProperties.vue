@@ -16,6 +16,13 @@
         </a-form-item>
 
         <a-form-item
+          v-if="typeof selectItem.labelWidth !== 'undefined'"
+          label="标签宽度"
+        >
+          <a-input v-model="selectItem.labelWidth" placeholder="请输入" />
+        </a-form-item>
+
+        <a-form-item
           v-if="!hideModel && typeof selectItem.model !== 'undefined'"
           label="数据字段"
         >
@@ -393,12 +400,12 @@
           <a-select
             :options="familyOptions"
             v-model="options.fontFamily"
-            style="width:36%;margin-left:2%;vertical-align:bottom;"
+            style="width: 36%; margin-left: 2%; vertical-align: bottom"
           />
           <a-select
             :options="sizeOptions"
             v-model="options.fontSize"
-            style="width:35%;margin-left:2%;vertical-align:bottom;"
+            style="width: 35%; margin-left: 2%; vertical-align: bottom"
           />
         </a-form-item>
         <a-form-item v-if="selectItem.type === 'text'" label="操作属性">
@@ -564,6 +571,28 @@
           />
         </a-form-item>
 
+        <!-- 数据来源配置 -->
+        <a-form-item
+          v-if="typeof options.dataSourceFrom !== 'undefined'"
+          label="数据来源配置"
+        >
+          <a-radio-group
+            buttonStyle="solid"
+            v-model="options.dataSourceDynamic"
+          >
+            <a-radio-button :value="false">静态数据</a-radio-button>
+            <a-radio-button :value="true">动态数据</a-radio-button>
+          </a-radio-group>
+
+          <apiJsonModal ref="apiJsonModal" @saveJson="apiJsonModalSave" />
+
+          <a-button v-if="!options.dataSourceDynamic" @click="handleStaticClick"
+            >静态数据json</a-button
+          >
+          <a-button v-if="options.dataSourceDynamic" @click="handleDynamicClick"
+            >动态数据json</a-button
+          >
+        </a-form-item>
       </a-form>
     </div>
   </div>
@@ -576,6 +605,7 @@
  */
 import KChangeOption from "../../KChangeOption/index.vue";
 import kCheckbox from "../../KCheckbox/index.vue";
+import apiJsonModal from "./apiJsonModal.vue";
 export default {
   name: "formItemProperties",
   data() {
@@ -669,7 +699,29 @@ export default {
   },
   components: {
     KChangeOption,
-    kCheckbox
+    kCheckbox,
+    apiJsonModal
+  },
+  methods: {
+    handleStaticClick() {
+      this.$refs.apiJsonModal.visible = true;
+      if (this.options.dataSourceDynamic) {
+        this.$refs.apiJsonModal.editorJson = this.options.dynamicReqData;
+      } else {
+        this.$refs.apiJsonModal.editorJson = this.options.staticReqData;
+      }
+    },
+    apiJsonModalSave(saveJson) {
+      console.log("apiJsonModalSave", saveJson);
+      if (this.options.dataSourceDynamic) {
+        this.options.dynamicReqData = saveJson;
+      } else {
+        this.options.staticReqData = saveJson;
+      }
+    },
+    handleDynamicClick() {
+      this.handleStaticClick();
+    }
   }
 };
 </script>

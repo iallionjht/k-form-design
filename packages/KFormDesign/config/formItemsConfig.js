@@ -8,6 +8,7 @@ export const basicsList = [
   {
     type: "input", // 表单类型
     label: "输入框", // 标题文字
+    labelWidth: 100,
     icon: "icon-write",
     options: {
       type: "text",
@@ -20,8 +21,8 @@ export const basicsList = [
       addonAfter: "",
       hidden: false, // 是否隐藏，false显示，true隐藏
       disabled: false, // 是否禁用，false不禁用，true禁用
-      ctlStyle: "",
-      // labelWidth: 100,
+      ctlStyle: ""
+      //数据来源配置可以是获取接口的数据
     },
     model: "", // 数据字段
     key: "",
@@ -451,7 +452,11 @@ export const basicsList = [
       hidden: false, // 是否隐藏，false显示，true隐藏
       showLabel: false,
       hideSequence: true,
-      width: "100%"
+      width: "100%",
+      dataSourceFrom: "",
+      dynamicReqData: "",
+      dataSourceDynamic: false,
+      staticReqData: ""
     },
     model: "",
     key: "",

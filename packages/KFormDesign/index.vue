@@ -262,7 +262,7 @@ export default {
     hideModel: {
       // 隐藏数据字段
       type: Boolean,
-      default: false 
+      default: false
     }
   },
   data() {
@@ -296,7 +296,9 @@ export default {
           labelLayout: "flex",
           wrapperCol: { xs: 18, sm: 18, md: 18, lg: 18, xl: 18, xxl: 18 },
           hideRequiredMark: false,
-          customStyle: ""
+          customStyle: "",
+          dataSourceFrom: "",
+          dataSourceDynamic: false
         }
       },
       previewOptions: {
@@ -369,7 +371,7 @@ export default {
     handleListPush(item) {
       // 双击控件按钮push到list
       // 生成key值
-      console.log("handleListPush ",item) 
+      console.log("handleListPush ", item);
       if (!this.selectItem.key) {
         // 在没有选择表单时，将数据push到this.data.list
         const key = item.type + "_" + new Date().getTime();
@@ -444,7 +446,9 @@ export default {
           labelLayout: "flex",
           wrapperCol: { xs: 18, sm: 18, md: 18, lg: 18, xl: 18, xxl: 18 },
           hideRequiredMark: false,
-          customStyle: ""
+          customStyle: "",
+          dataSourceFrom: "",
+          dataSourceDynamic: false
         }
       };
       this.handleSetSelectItem({ key: "" });

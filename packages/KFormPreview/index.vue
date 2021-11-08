@@ -6,7 +6,7 @@
     @cancel="handleCancel"
     okText="获取数据"
     cancelText="关闭"
-    style="top:20px;"
+    style="top: 20px"
     :destroyOnClose="true"
     :centered="true"
     :dialogStyle="dialogStyle"
@@ -30,7 +30,7 @@ export default {
       visible: false,
       previewWidth: 850,
       jsonData: {},
-        dialogStyle: {
+      dialogStyle: {
         position: "absolute",
         right: "150px",
         left: "150px",
@@ -77,22 +77,22 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-.ant-modal-root::v-deep .ant-modal-body::-webkit-scrollbar{
+.ant-modal-root::v-deep .ant-modal-body::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 .ant-modal-root::v-deep .ant-modal-body::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    -webkit-box-shadow: inset 0 0 5px rgb(0 0 0 / 20%);
-    box-shadow: inset 0 0 5px rgb(0 0 0 / 20%);
-    background: rgba(0, 0, 0, 0.2);
-    scrollbar-arrow-color: red;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 0 5px rgb(0 0 0 / 20%);
+  box-shadow: inset 0 0 5px rgb(0 0 0 / 20%);
+  background: rgba(0, 0, 0, 0.2);
+  scrollbar-arrow-color: red;
 }
 .ant-modal-root::v-deep .ant-modal-body::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 5px rgb(0 0 0 / 20%);
-    box-shadow: inset 0 0 5px rgb(0 0 0 / 20%);
-    border-radius: 0;
-    background: rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0 0 5px rgb(0 0 0 / 20%);
+  box-shadow: inset 0 0 5px rgb(0 0 0 / 20%);
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0.1);
 }
 .ant-modal-root::v-deep .ant-modal-content {
   height: 100%;

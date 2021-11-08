@@ -85,7 +85,7 @@
           </div>
         </a-form-item>
         <a-form-item label="预览模态框宽度">
-          <a-input-number style="width:100%;" v-model="previewOptions.width" />
+          <a-input-number style="width: 100%" v-model="previewOptions.width" />
         </a-form-item>
         <a-form-item label="表单CSS">
           <a-textarea v-model="config.customStyle" />
@@ -93,9 +93,28 @@
         <a-form-item label="表单属性">
           <kCheckbox v-model="config.hideRequiredMark" label="隐藏必选标记" />
         </a-form-item>
-        <a-form-item label="提示">
-          实际预览效果请点击预览查看
+
+        <!-- 数据来源配置 -->
+        <a-form-item
+          v-if="typeof config.dataSourceFrom !== 'undefined'"
+          label="数据来源配置"
+        >
+          <a-radio-group buttonStyle="solid" v-model="config.dataSourceDynamic">
+            <a-radio-button :value="false">静态数据</a-radio-button>
+            <a-radio-button :value="true">动态数据</a-radio-button>
+          </a-radio-group>
+
+          <apiJsonModal ref="apiJsonModal" @saveJson="apiJsonModalSave" />
+
+          <a-button v-if="!config.dataSourceDynamic" @click="handleStaticClick"
+            >静态数据json</a-button
+          >
+          <a-button v-if="config.dataSourceDynamic" @click="handleDynamicClick"
+            >动态数据json</a-button
+          >
         </a-form-item>
+
+        <a-form-item label="提示"> 实际预览效果请点击预览查看 </a-form-item>
       </a-form>
     </div>
   </div>
@@ -107,10 +126,13 @@
  * description 表单属性设置面板组件
  */
 import kCheckbox from "../../KCheckbox/index.vue";
+
+import apiJsonModal from "./apiJsonModal";
 export default {
   name: "formProperties",
   components: {
-    kCheckbox
+    kCheckbox,
+    apiJsonModal
   },
   props: {
     config: {
@@ -123,6 +145,25 @@ export default {
     }
   },
   methods: {
+    handleStaticClick() {
+      this.$refs.apiJsonModal.visible = true;
+      if (this.config.dataSourceDynamic) {
+        this.$refs.apiJsonModal.editorJson = this.config.dynamicReqData;
+      } else {
+        this.$refs.apiJsonModal.editorJson = this.config.staticReqData;
+      }
+    },
+    apiJsonModalSave(saveJson) {
+      console.log("apiJsonModalSave", saveJson);
+      if (this.config.dataSourceDynamic) {
+        this.config.dynamicReqData = saveJson;
+      } else {
+        this.config.staticReqData = saveJson;
+      }
+    },
+    handleDynamicClick() {
+      this.handleStaticClick();
+    },
     handleChangeCol(e) {
       this.config.labelCol.xs = this.config.labelCol.sm = this.config.labelCol.md = this.config.labelCol.lg = this.config.labelCol.xl = this.config.labelCol.xxl = e;
 

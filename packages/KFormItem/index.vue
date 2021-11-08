@@ -40,7 +40,7 @@
         : {}
     "
   >
-    <span slot="label">
+    <span slot="label" v-if="!record.options.lableHide">
       <a-tooltip>
         <span v-text="record.label"></span>
         <span v-if="record.help" slot="title" v-html="record.help"></span>
@@ -280,6 +280,7 @@
       v-bind="componentOption"
       :record="record"
       :config="config"
+      :formConfig="formConfig"
       :parentDisabled="disabled || record.options.disabled"
       :disabled="disabled || record.options.disabled"
       :dynamicData="dynamicData"
@@ -293,7 +294,8 @@
       ]"
       :is="componentItem"
     ></component>
-  </a-form-item> 
+  </a-form-item>
+  <!-- tableList -->
   <a-form-item
     v-else-if="['tableList'].includes(record.type)"
     :label="!record.options.showLabel ? '' : record.label"
@@ -325,6 +327,7 @@
       v-bind="componentOption"
       :record="record"
       :config="config"
+      :formConfig="formConfig"
       :parentDisabled="disabled || record.options.disabled"
       :disabled="disabled || record.options.disabled"
       :dynamicData="dynamicData"
@@ -458,13 +461,13 @@ export default {
   computed: {
     labelCol() {
       if (this.record.options.labelWidth) {
-        return {style: `width:${this.record.options.labelWidth}px`}
+        return { style: `width:${this.record.options.labelWidth}px` };
       }
-      return this.formConfig.layout === 'horizontal'
-        ? this.formConfig.labelLayout === 'flex'
+      return this.formConfig.layout === "horizontal"
+        ? this.formConfig.labelLayout === "flex"
           ? { style: `width:${this.formConfig.labelWidth}px` }
           : this.formConfig.labelCol
-        : {}
+        : {};
     },
     customList() {
       if (window.$customComponentList) {
@@ -483,6 +486,7 @@ export default {
       return ComponentArray[this.record.type];
     },
     componentOption() {
+      // 删除"defaultValue", "disabled"对象属性
       return _.omit(this.record.options, ["defaultValue", "disabled"]);
     }
   },

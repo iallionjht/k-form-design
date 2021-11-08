@@ -47,6 +47,10 @@ export default `{
 			"xxl": 18
 		},
 		"hideRequiredMark": false,
-		"customStyle": ""
+		"dataSourceFrom":"",
+		"customStyle": "",
+		"dynamicReqData": "",
+		"dataSourceDynamic": false,
+		"staticReqData": ""
 	}
 }`;
