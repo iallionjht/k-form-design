@@ -256,7 +256,8 @@ export default {
         "tabs",
         "grid",
         "table",
-        "tableList"
+        "tableList",
+        "kText"
       ]
     },
     hideModel: {

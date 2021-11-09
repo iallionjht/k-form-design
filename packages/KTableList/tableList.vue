@@ -59,9 +59,9 @@
         />
       </template> -->
     </a-table>
-    <a-button type="dashed" :disabled="disabled" @click="addDomain">
+    <!-- <a-button type="dashed" :disabled="disabled" @click="addDomain">
       <a-icon type="plus" />增加
-    </a-button>
+    </a-button> -->
   </a-form-model>
 </template>
 

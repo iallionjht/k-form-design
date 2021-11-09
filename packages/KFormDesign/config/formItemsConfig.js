@@ -9,6 +9,7 @@ export const basicsList = [
     type: "input", // 表单类型
     label: "输入框", // 标题文字
     labelWidth: 100,
+    lableHide: false,
     icon: "icon-write",
     options: {
       type: "text",
@@ -600,7 +601,17 @@ export const basicsList = [
       defaultValue: "<strong>HTML</strong>"
     },
     key: ""
-  }
+  },
+  {
+    type: "kText",
+    label: "标签文字",
+    icon: "icon-zihao",
+    options: {
+      textAlign: "left",
+      hidden: false, // 是否隐藏，false显示，true隐藏
+    },
+    key: ""
+  },
 ];
 
 // 高级控件

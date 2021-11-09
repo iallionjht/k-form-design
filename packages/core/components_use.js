@@ -50,6 +50,7 @@ import UploadFile from "../UploadFile";
 import UploadImg from "../UploadImg";
 import KDatePicker from "../KDatePicker";
 import KTimePicker from "../KTimePicker";
+import KText from "../KText";
 
 export default {
   input: Input,
@@ -69,7 +70,8 @@ export default {
   batch: KBatch,
   selectInputList: KSelectInputList,
   editor: KEditor,
-  tableList: KTableList
+  tableList: KTableList,
+  kText: KText,
 };
 
 Vue.use(ConfigProvider);

@@ -23,7 +23,8 @@
         'uploadImg',
         'uploadFile',
         'cascader',
-        'treeSelect'
+        'treeSelect',
+        'kText',
       ].includes(record.type)
     "
     :label-col="labelCol"
@@ -40,7 +41,7 @@
         : {}
     "
   >
-    <span slot="label" v-if="!record.options.lableHide">
+    <span slot="label" v-if="!record.lableHide">
       <a-tooltip>
         <span v-text="record.label"></span>
         <span v-if="record.help" slot="title" v-html="record.help"></span>
@@ -57,7 +58,7 @@
       v-if="record.type === 'textarea'"
       :autoSize="{
         minRows: record.options.minRows,
-        maxRows: record.options.maxRows
+        maxRows: record.options.maxRows,
       }"
       :disabled="disabled || record.options.disabled"
       :placeholder="record.options.placeholder"
@@ -69,8 +70,8 @@
         record.model, // input 的 name
         {
           initialValue: record.options.defaultValue, // 默认值
-          rules: record.rules // 验证规则
-        }
+          rules: record.rules, // 验证规则
+        },
       ]"
     />
     <!-- 单选框 -->
@@ -91,8 +92,8 @@
         record.model,
         {
           initialValue: record.options.defaultValue,
-          rules: record.rules
-        }
+          rules: record.rules,
+        },
       ]"
     />
     <!-- 多选框 -->
@@ -113,8 +114,8 @@
         record.model,
         {
           initialValue: record.options.defaultValue,
-          rules: record.rules
-        }
+          rules: record.rules,
+        },
       ]"
     />
     <!-- 开关 -->
@@ -128,8 +129,8 @@
         {
           initialValue: record.options.defaultValue,
           valuePropName: 'checked',
-          rules: record.rules
-        }
+          rules: record.rules,
+        },
       ]"
     />
     <!-- 滑块 -->
@@ -150,8 +151,8 @@
             record.model,
             {
               initialValue: record.options.defaultValue,
-              rules: record.rules
-            }
+              rules: record.rules,
+            },
           ]"
         />
       </div>
@@ -177,14 +178,15 @@
                       callback('输入值必须是步长的倍数');
                     }
                     callback();
-                  }
-                }
-              ]
-            }
+                  },
+                },
+              ],
+            },
           ]"
         />
       </div>
     </div>
+
     <component
       v-else
       :style="`width:${record.options.width};` + `${record.options.ctlStyle}`"
@@ -242,8 +244,8 @@
         record.model, // input 的 name
         {
           initialValue: record.options.defaultValue, // 默认值
-          rules: record.rules // 验证规则
-        }
+          rules: record.rules, // 验证规则
+        },
       ]"
       :is="componentItem"
     ></component>
@@ -289,8 +291,29 @@
         record.model, // input 的 name
         {
           initialValue: record.options.defaultValue, // 默认值
-          rules: record.rules // 验证规则
-        }
+          rules: record.rules, // 验证规则
+        },
+      ]"
+      :is="componentItem"
+    ></component>
+  </a-form-item>
+  <a-form-item v-else-if="['kText'].includes(record.type)">
+    <component
+      :style="record.options.ctlStyle"
+      v-bind="componentOption"
+      :record="record"
+      :config="config"
+      :formConfig="formConfig"
+      :parentDisabled="disabled || record.options.disabled"
+      :disabled="disabled || record.options.disabled"
+      :dynamicData="dynamicData"
+      @change="handleChange($event, record.model)"
+      v-decorator="[
+        record.model, // input 的 name
+        {
+          initialValue: record.options.defaultValue, // 默认值
+          rules: record.rules, // 验证规则
+        },
       ]"
       :is="componentItem"
     ></component>
@@ -336,8 +359,8 @@
         record.model, // input 的 name
         {
           initialValue: record.options.defaultValue, // 默认值
-          rules: record.rules // 验证规则
-        }
+          rules: record.rules, // 验证规则
+        },
       ]"
       :is="componentItem"
     ></component>
@@ -380,7 +403,7 @@
         :style="{
           fontFamily: record.options.fontFamily,
           fontSize: record.options.fontSize,
-          color: record.options.color
+          color: record.options.color,
         }"
         v-text="record.label"
       ></label>
@@ -407,8 +430,8 @@
     <a-divider
       v-if="
         record.type === 'divider' &&
-          record.label !== '' &&
-          record.options.orientation
+        record.label !== '' &&
+        record.options.orientation
       "
       :orientation="record.options.orientation"
       >{{ record.label }}</a-divider
@@ -435,28 +458,28 @@ export default {
     // 表单数组
     record: {
       type: Object,
-      required: true
+      required: true,
     },
     // form-item 宽度配置
     formConfig: {
       type: Object,
-      required: true
+      required: true,
     },
     config: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     dynamicData: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     disabled: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   components: {
-    customComponent
+    customComponent,
   },
   computed: {
     labelCol() {
@@ -471,7 +494,7 @@ export default {
     },
     customList() {
       if (window.$customComponentList) {
-        return window.$customComponentList.map(item => item.type);
+        return window.$customComponentList.map((item) => item.type);
       } else {
         return [];
       }
@@ -488,7 +511,7 @@ export default {
     componentOption() {
       // 删除"defaultValue", "disabled"对象属性
       return _.omit(this.record.options, ["defaultValue", "disabled"]);
-    }
+    },
   },
   methods: {
     validationSubform() {
@@ -503,8 +526,8 @@ export default {
       }
       // 传递change事件
       this.$emit("change", value, key);
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="less" scoped>

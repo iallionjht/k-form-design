@@ -22,6 +22,14 @@
           <a-input v-model="selectItem.labelWidth" placeholder="请输入" />
         </a-form-item>
 
+        <a-form-item>
+          <kCheckbox
+            v-if="typeof selectItem.lableHide !== 'undefined'"
+            v-model="selectItem.lableHide"
+            label="隐藏标签"
+          />
+        </a-form-item>
+
         <a-form-item
           v-if="!hideModel && typeof selectItem.model !== 'undefined'"
           label="数据字段"
