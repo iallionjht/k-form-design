@@ -4,7 +4,9 @@
 
 <template>
   <div>
-    <a-text :style="{ width: record.options.width }"> asdfsadf </a-text>
+    <a-text :style="record.options.ctlStyle">
+      {{ showVal }}
+    </a-text>
   </div>
 </template>
 <script>
@@ -16,14 +18,28 @@
 export default {
   name: "kText",
   // eslint-disable-next-line vue/require-prop-types
-  props: ["record", "value", "config", "parentDisabled", "formConfig"],
+  props: [
+    "record",
+    "value",
+    "config",
+    "parentDisabled",
+    "formConfig",
+    "textVal",
+  ],
   data() {
     return {};
   },
   watch: {
     value: {},
   },
-  computed: {},
+  computed: {
+    showVal() {
+      if (typeof this.textVal !== "undefined" && this.textVal !== "") {
+        return this.textVal;
+      }
+      return this.record.options.textValue;
+    },
+  },
   methods: {},
 };
 </script>

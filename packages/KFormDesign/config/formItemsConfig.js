@@ -40,6 +40,7 @@ export const basicsList = [
     type: "textarea", // 表单类型
     label: "文本框", // 标题文字
     icon: "icon-edit",
+    lableHide: false,
     options: {
       width: "100%", // 宽度
       minRows: 4,
@@ -49,7 +50,8 @@ export const basicsList = [
       clearable: false,
       hidden: false, // 是否隐藏，false显示，true隐藏
       disabled: false,
-      placeholder: "请输入"
+      placeholder: "请输入",
+      ctlStyle: ""
     },
     model: "", // 数据字段
     key: "",
@@ -65,6 +67,7 @@ export const basicsList = [
     type: "number", // 表单类型
     label: "数字输入框", // 标题文字
     icon: "icon-number",
+    lableHide: false,
     options: {
       width: "100%", // 宽度
       defaultValue: 0, // 默认值
@@ -74,7 +77,8 @@ export const basicsList = [
       step: 1, // 步长，点击加减按钮时候，加减多少
       hidden: false, // 是否隐藏，false显示，true隐藏
       disabled: false, //是否禁用
-      placeholder: "请输入"
+      placeholder: "请输入",
+      ctlStyle: ""
     },
     model: "", // 数据字段
     key: "",
@@ -90,6 +94,7 @@ export const basicsList = [
     type: "select", // 表单类型
     label: "下拉选择器", // 标题文字
     icon: "icon-xiala",
+    lableHide: false,
     options: {
       width: "100%", // 宽度
       defaultValue: undefined, // 下拉选框请使用undefined为默认值
@@ -111,7 +116,8 @@ export const basicsList = [
           label: "下拉框2"
         }
       ],
-      showSearch: false // 是否显示搜索框，搜索选择的项的值，而不是文字
+      showSearch: false, // 是否显示搜索框，搜索选择的项的值，而不是文字
+      ctlStyle: ""
     },
     model: "",
     key: "",
@@ -127,7 +133,9 @@ export const basicsList = [
     type: "checkbox",
     label: "多选框",
     icon: "icon-duoxuan1",
+    lableHide: false,
     options: {
+      ctlStyle: "",
       disabled: false, //是否禁用
       hidden: false, // 是否隐藏，false显示，true隐藏
       defaultValue: [],
@@ -162,7 +170,9 @@ export const basicsList = [
     type: "radio", // 表单类型
     label: "单选框", // 标题文字
     icon: "icon-danxuan-cuxiantiao",
+    lableHide: false,
     options: {
+      ctlStyle: "",
       disabled: false, //是否禁用
       hidden: false, // 是否隐藏，false显示，true隐藏
       defaultValue: "", // 默认值
@@ -197,7 +207,9 @@ export const basicsList = [
     type: "date", // 表单类型
     label: "日期选择框", // 标题文字
     icon: "icon-calendar",
+    lableHide: false,
     options: {
+      ctlStyle: "",
       width: "100%", // 宽度
       defaultValue: "", // 默认值，字符串 12:00:00
       rangeDefaultValue: [], // 默认值，字符串 12:00:00
@@ -224,7 +236,9 @@ export const basicsList = [
     type: "time", // 表单类型
     label: "时间选择框", // 标题文字
     icon: "icon-time",
+    lableHide: false,
     options: {
+      ctlStyle: "",
       width: "100%", // 宽度
       defaultValue: "", // 默认值，字符串 12:00:00
       disabled: false, // 是否禁用
@@ -247,7 +261,9 @@ export const basicsList = [
     type: "rate", // 表单类型
     label: "评分", // 标题文字
     icon: "icon-pingfen_moren",
+    lableHide: false,
     options: {
+      ctlStyle: "",
       defaultValue: 0,
       max: 5, // 最大值
       disabled: false, // 是否禁用
@@ -268,7 +284,9 @@ export const basicsList = [
     type: "slider", // 表单类型
     label: "滑动输入条", // 标题文字
     icon: "icon-menu",
+    lableHide: false,
     options: {
+      ctlStyle: "",
       width: "100%", // 宽度
       defaultValue: 0, // 默认值， 如果range为true的时候，则需要改成数组,如：[12,15]
       disabled: false, // 是否禁用
@@ -293,7 +311,9 @@ export const basicsList = [
     type: "uploadFile", // 表单类型
     label: "上传文件", // 标题文字
     icon: "icon-upload",
+    lableHide: false,
     options: {
+      ctlStyle: "",
       defaultValue: "[]",
       multiple: false,
       disabled: false,
@@ -323,7 +343,9 @@ export const basicsList = [
     type: "uploadImg",
     label: "上传图片",
     icon: "icon-image",
+    lableHide: false,
     options: {
+      ctlStyle: "",
       defaultValue: "[]",
       multiple: false,
       hidden: false, // 是否隐藏，false显示，true隐藏
@@ -351,7 +373,9 @@ export const basicsList = [
     type: "treeSelect", // 表单类型
     label: "树选择器", // 标题文字
     icon: "icon-tree",
+    lableHide: false,
     options: {
+      ctlStyle: "",
       disabled: false, //是否禁用
       defaultValue: undefined, // 默认值
       multiple: false,
@@ -399,7 +423,9 @@ export const basicsList = [
     type: "cascader", // 表单类型
     label: "级联选择器", // 标题文字
     icon: "icon-guanlian",
+    lableHide: false,
     options: {
+      ctlStyle: "",
       disabled: false, //是否禁用
       hidden: false, // 是否隐藏，false显示，true隐藏
       defaultValue: undefined, // 默认值
@@ -446,8 +472,10 @@ export const basicsList = [
     type: "tableList",
     label: "表格列表",
     icon: "icon-biaoge",
+    lableHide: false,
     list: [],
     options: {
+      ctlStyle: "",
       scrollY: 0,
       disabled: false,
       hidden: false, // 是否隐藏，false显示，true隐藏
@@ -467,8 +495,10 @@ export const basicsList = [
     type: "batch",
     label: "动态表格",
     icon: "icon-biaoge",
+    lableHide: false,
     list: [],
     options: {
+      ctlStyle: "",
       scrollY: 0,
       disabled: false,
       hidden: false, // 是否隐藏，false显示，true隐藏
@@ -484,6 +514,7 @@ export const basicsList = [
     type: "selectInputList",
     label: "选择输入列",
     icon: "icon-biaoge",
+    lableHide: false,
     columns: [
       {
         value: "1",
@@ -497,6 +528,7 @@ export const basicsList = [
       }
     ],
     options: {
+      ctlStyle: "",
       disabled: false,
       multiple: true, // 是否允许多选
       hidden: false, // 是否隐藏，false显示，true隐藏
@@ -511,8 +543,10 @@ export const basicsList = [
     type: "editor",
     label: "富文本",
     icon: "icon-LC_icon_edit_line_1",
+    lableHide: false,
     list: [],
     options: {
+      ctlStyle: "",
       height: 300,
       placeholder: "请输入",
       defaultValue: "",
@@ -536,7 +570,9 @@ export const basicsList = [
     type: "switch", // 表单类型
     label: "开关", // 标题文字
     icon: "icon-kaiguan3",
+    lableHide: false,
     options: {
+      ctlStyle: "",
       defaultValue: false, // 默认值 Boolean 类型
       hidden: false, // 是否隐藏，false显示，true隐藏
       disabled: false // 是否禁用
@@ -555,7 +591,9 @@ export const basicsList = [
     type: "button", // 表单类型
     label: "按钮", // 标题文字
     icon: "icon-button-remove",
+    lableHide: false,
     options: {
+      ctlStyle: "",
       type: "primary",
       handle: "submit",
       dynamicFun: "",
@@ -569,6 +607,7 @@ export const basicsList = [
     label: "警告提示",
     icon: "icon-zu",
     options: {
+      ctlStyle: "",
       type: "success",
       description: "",
       showIcon: false,
@@ -582,12 +621,14 @@ export const basicsList = [
     type: "text",
     label: "文字",
     icon: "icon-zihao",
+    lableHide: false,
     options: {
+      ctlStyle: "",
       textAlign: "left",
       hidden: false, // 是否隐藏，false显示，true隐藏
       showRequiredMark: false,
       color: "rgb(0, 0, 0)",
-      fontFamily: "SimHei",
+      // fontFamily: "SimHei",
       fontSize: "16pt"
     },
     key: ""
@@ -596,6 +637,7 @@ export const basicsList = [
     type: "html",
     label: "HTML",
     icon: "icon-ai-code",
+    lableHide: false,
     options: {
       hidden: false, // 是否隐藏，false显示，true隐藏
       defaultValue: "<strong>HTML</strong>"
@@ -606,9 +648,12 @@ export const basicsList = [
     type: "kText",
     label: "标签文字",
     icon: "icon-zihao",
+    lableHide: false,
     options: {
+      ctlStyle: "",
       textAlign: "left",
       hidden: false, // 是否隐藏，false显示，true隐藏
+      textValue: "默认文字"
     },
     key: ""
   },

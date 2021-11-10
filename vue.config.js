@@ -19,7 +19,8 @@ module.exports = {
     loaderOptions: {
       less: {
         modifyVars: {
-          "primary-color": "#13c2c2",
+          // "primary-color": "#13c2c2",
+          "primary-color": "#307AEA",
           // "primary-color": "#9867f7",
           "layout-color": "#9867f7"
           // "layout-color": "#ee88aa"
@@ -29,7 +30,7 @@ module.exports = {
     }
   },
   configureWebpack: config => {
-     // 开发环境配置
+    // 开发环境配置
     if (debug) {
       config.devtool = 'source-map'
     }

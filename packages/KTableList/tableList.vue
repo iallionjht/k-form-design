@@ -39,6 +39,7 @@
           :domains="dynamicValidateForm.domains"
           :dynamicData="dynamicData"
           v-model="record[item.model]"
+          :textVal="record[item.model]"
           @input="handleInput"
         />
       </template>
@@ -179,7 +180,7 @@ export default {
         const listData = parseResponse(this.record.options.staticReqData);
         this.constructListData(listData);
       } else {
-        console.log("3434");
+        console.log("get data from server");
         // this.record.options.dynamicReqData
         // axios.get("/test1").then((res) => {
         //   }
